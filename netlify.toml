@@ -4,12 +4,6 @@
   CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
   TERM = "xterm"
 
-[[redirects]]
-  from = "/*"
-  to = "http://numbersapi.com/**"
-  status = 200
-  force = true
-
 
 
 # run Cypress E2E tests
