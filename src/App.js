@@ -5,16 +5,16 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MovieView } from './components/MovieView';
 import { MovieViewType } from './components/MovieViewType';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
 
   return (
     <div style={styles.container}>
-      <Router>
+      
       <Header />
         <MovieProvider>
-        <Switch>
+        <Router>
           <Route exact path="/">
             <MovieView/>
           </Route>
@@ -27,10 +27,10 @@ function App() {
           <Route render={
             () =>  <div className="error-div" style={{ justifyContent: 'center', display: 'flex' }}><h1>Endpoint not found</h1></div>
           } />
-      </Switch>
+      </Router> 
       </MovieProvider>
       <Footer />
-    </Router> 
+    
     </div>
     
   );
