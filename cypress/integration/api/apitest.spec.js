@@ -1,7 +1,7 @@
 
 describe('Api Endpoint Tests', () => {
   it('Visit home page', () => {
-    cy.visit('https://eager-tereshkova-c3ca44.netlify.app/')
+    cy.visit('https://localhost:5000/')
 
     cy.get('.home-title-div-title')
     .should('not.be.empty')
@@ -17,40 +17,40 @@ describe('Api Endpoint Tests', () => {
   })
 
   it('Check home page access', () => {
-    cy.visit('https://eager-tereshkova-c3ca44.netlify.app/')
+    cy.visit('https://localhost:5000/')
 
     cy.get('.home-title-div-title').should('not.be.empty').click()
 
     .then(() => {
       cy.wait(1000)
-      cy.url().should('eq', 'https://eager-tereshkova-c3ca44.netlify.app/')
+      cy.url().should('eq', 'https://localhost:5000/')
     })
   })
 
   it('Access series endpoint', () => {
-    cy.visit('https://eager-tereshkova-c3ca44.netlify.app/')
+    cy.visit('https://localhost:5000/')
 
     cy.get('.series-div').should('not.be.empty').click()
 
     .then(() => {
       cy.wait(1000)
-      cy.url().should('eq', 'https://eager-tereshkova-c3ca44.netlify.app/series')
+      cy.url().should('eq', 'https://localhost:5000/series')
     })
   })
 
   it('Access movies endpoint', () => {
-    cy.visit('https://eager-tereshkova-c3ca44.netlify.app/')
+    cy.visit('https://localhost:5000/')
 
     cy.get('.movies-div').should('not.be.empty').click()
 
     .then(() => {
       cy.wait(1000)
-      cy.url().should('eq', 'https://eager-tereshkova-c3ca44.netlify.app/movies')
+      cy.url().should('eq', 'https://localhost:5000/movies')
     })
   })
 
   it('Access random endpoint', () => {
-    cy.visit('https://eager-tereshkova-c3ca44.netlify.app/abc')
+    cy.visit('https://localhost:5000/abc')
 
     cy.get('.error-div').should('not.be.empty')
     .invoke('text')
