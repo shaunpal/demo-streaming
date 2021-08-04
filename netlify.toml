@@ -5,10 +5,10 @@
   TERM = "xterm"
 
 [[redirects]]
-from = "https://adoring-carson-eb5696.netlify.app/*"
-to = "http://numbersapi.com/*"
-status = 200
-force = true
+  from = "/*"
+  to = "http://numbersapi.com/**"
+  status = 200
+  force = true
 
 
 
