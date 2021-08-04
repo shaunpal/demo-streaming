@@ -13,7 +13,7 @@ export const MovieViewType = ({ type }) => {
 
     const [movies, setMovies] = useContext(MovieContext);
 
-    const [moviefilters, setMovieFilters] = useState(() => {
+    const [moviefilters, ] = useState(() => {
         return movies.filter(movie => movie.programType === type.toLowerCase())
     })
 
@@ -50,6 +50,7 @@ export const MovieViewType = ({ type }) => {
           });
         };
       
+        let currentRef = imgRef.current;
         const options = {
           rootMargin: "100px",
           threshold: 0
@@ -57,12 +58,12 @@ export const MovieViewType = ({ type }) => {
       
         const observer = new IntersectionObserver(callback, options);
         if(imgRef.current){
-            observer.observe(imgRef.current);
+            observer.observe(currentRef);
         }
         
 
         return () => {
-            observer.unobserve(imgRef.current)
+            observer.unobserve(currentRef)
         }
       }, [imgRef,visible, moviefilters]);
 
@@ -73,15 +74,6 @@ export const MovieViewType = ({ type }) => {
             <div style={styles.populartitlesdiv}>
                 <p className="popular-header" style={{ fontSize: 18, marginLeft: '17%'}}>Popular {type}</p>
             </div>
-                {/* {moviefilters == null || moviefilters.length == 0?
-                <div>
-                    <h2>Loading....</h2>
-                </div>
-                : */}
-                {/* <div style={openTrivia ? styles.triviacontainer : styles.hiddencontainer}>
-
-                    <p>{movietrivia}</p>
-                </div> */}
                 <div className="series-movies-container" ref={imgRef} style={styles.moviecontainer}>
                 {moviefilters.map(movie => (
                     <div key={movie.title} style={{ marginRight: '20px' }}>
@@ -89,6 +81,7 @@ export const MovieViewType = ({ type }) => {
                         <div>
                             <div className="movie-img" style={styles.moviediv}>
                                 <img 
+                                    alt={movie.title}
                                     width={'180px'}
                                     height={'250px'}
                                     src={movie.images["Poster Art"].url} />
