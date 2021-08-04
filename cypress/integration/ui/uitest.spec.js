@@ -1,7 +1,7 @@
 
 describe('UI component Tests', () => {
     it('Home page title', () => {
-      cy.visit('http://localhost:3000/')
+      cy.visit('http://localhost:5000/')
   
       cy.get('.home-title-div-title').should('not.be.empty');
       cy.get('.home-title-div-title').invoke('text').should('eq', "DEMO Streaming");
@@ -9,14 +9,14 @@ describe('UI component Tests', () => {
     });
 
     it(" 'Home page' Check login functionality", () => {
-        cy.visit('http://localhost:3000/')
+        cy.visit('http://localhost:5000/')
     
         cy.get('.home-title-login-div-label').should('not.be.empty');
         cy.get('.home-title-login-div-label').invoke('text').should('eq', "Log in");
     });
 
     it(" 'Home page' Checking labels", () => {
-        cy.visit('http://localhost:3000/')
+        cy.visit('http://localhost:5000/')
     
         cy.get('.popular-titles-header').should('not.be.empty');
         cy.get('.popular-titles-header').invoke('text').should('eq', "Popular Titles");
@@ -38,7 +38,7 @@ describe('UI component Tests', () => {
             count++
             return count;
         }
-        cy.visit('http://localhost:3000/')
+        cy.visit('http://localhost:5000/')
     
         cy.get(".home-login-window").get('button')
             .click().then(() => {
@@ -61,7 +61,7 @@ describe('UI component Tests', () => {
     });
 
     it(" 'Series page' Checking labels", () => {
-        cy.visit('http://localhost:3000/series')
+        cy.visit('http://localhost:5000/series')
     
         cy.get('.popular-header').should('not.be.empty');
         cy.get('.popular-header').invoke('text').should('eq', "Popular Series");
@@ -80,7 +80,7 @@ describe('UI component Tests', () => {
     });
 
     it(" 'Series page' trivia btn functionality", () => {
-        cy.visit('http://localhost:3000/series')
+        cy.visit('http://localhost:5000/series')
     
         cy.get('.popular-header').should('not.be.empty');
         cy.get('.popular-header').invoke('text').should('eq', "Popular Series");
@@ -103,7 +103,7 @@ describe('UI component Tests', () => {
     });
 
     it(" 'Movies page' Checking labels", () => {
-        cy.visit('http://localhost:3000/movies')
+        cy.visit('http://localhost:5000/movies')
     
         cy.get('.popular-header').should('not.be.empty');
         cy.get('.popular-header').invoke('text').should('eq', "Popular Movie");
@@ -122,7 +122,7 @@ describe('UI component Tests', () => {
     });
 
     it(" 'Movies page' trivia btn functionality", () => {
-        cy.visit('http://localhost:3000/movies')
+        cy.visit('http://localhost:5000/movies')
     
         cy.get('.popular-header').should('not.be.empty');
         cy.get('.popular-header').invoke('text').should('eq', "Popular Movie");
