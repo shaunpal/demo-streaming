@@ -13,6 +13,3 @@ package = "netlify-plugin-cypress"
     # skip the default tests before the deploy
     record = true
     spec = "cypress/integration/*"
-  [plugins.inputs.onSuccess]
-    # run tests after the deploy
-    enable = true
