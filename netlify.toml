@@ -12,4 +12,4 @@ package = "netlify-plugin-cypress"
   [plugins.inputs]
     # skip the default tests before the deploy
     record = true
-    spec = "cypress/integration/*"
+    spec = "cypress/integration/**"
