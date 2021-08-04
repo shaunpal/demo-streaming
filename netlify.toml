@@ -1,6 +1,7 @@
 [build]
 command = "npm run build"
 publish = "build"
+base = "/"
 
 [build.environment]
   CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
