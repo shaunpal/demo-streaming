@@ -5,7 +5,7 @@ export const TriviaWindow = ({ isOpen, movie }) => {
 
     return (
         <div className="trivia-div" style={isOpen ? styles.container : styles.hiddencontainer}>
-            <div style={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'column', margin: '30px 0 0 5px' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'column', margin: '0 0 0 5px', height: '120px' }}>
                 <p style={{ fontSize: 10, margin: 0 }}>Fun Trivia</p>
                 <div style={styles.triviabody}>
                     <p>{movie.trivia}</p>
@@ -19,7 +19,7 @@ const styles = {
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: "row",
+        flexDirection: "column",
         width: '190px',
         height: '150px',
         display: 'flex',

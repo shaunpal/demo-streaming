@@ -5,6 +5,8 @@ import { TriviaWindow } from "./TriviaWindow";
 
 export const MovieViewType = ({ type }) => {
 
+    const errMsg = "Unavailable for now...";
+
     const [openTrivia, setOpenTrivia] = useState(false);
 
     const imgRef = useRef()
@@ -21,13 +23,12 @@ export const MovieViewType = ({ type }) => {
     const getTriviaWindow = (movie) => {
         movie.topen = !openTrivia;
         setOpenTrivia(!openTrivia);
-        retrieveTrivia(movie)
-        console.log("open: "+openTrivia)
+        retrieveTrivia(movie);
     }
 
     const retrieveTrivia = (movie) => {
         if(movie.trivia){
-            return movie.trivia;
+            return;
         }
         axios.get(`http://numbersapi.com/${movie.releaseYear}/year`)
             .then(res => res.data)
@@ -36,10 +37,10 @@ export const MovieViewType = ({ type }) => {
             })
             .catch(error => {
                 console.log("Error: "+error)
-                movie.trivia = "Unavailable for now..."
+                movie.trivia = errMsg;
             });
             setMovies([...movies, movie])
-            return movie.trivia
+            return;
     }
 
     useEffect(() => {
