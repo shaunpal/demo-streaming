@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MovieContext } from "../contexts/MovieContext";
 import { TriviaWindow } from "./TriviaWindow";
+import { Button } from "@material-ui/core";
 
 export const MovieViewType = ({ type }) => {
 
@@ -92,7 +93,7 @@ export const MovieViewType = ({ type }) => {
                                 <h6 style={{ height: '40px', width: '120px', flexWrap: 'wrap' }}>{movie.title}</h6>
                                 <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row' }}>
                                     <h6>{movie.releaseYear}</h6>
-                                    <p className="trivia-btn" style={styles.trivadiv} onClick={() => getTriviaWindow(movie)}>Click for Trivia</p>
+                                    <Button className="trivia-btn" style={styles.trivadiv} variant="contained" onClick={() => getTriviaWindow(movie)}>Click for Trivia</Button>
                                 </div>
                             </div>
                         </div>
@@ -151,8 +152,7 @@ const styles = {
         backgroundColor: 'lightgrey',
         color: 'black',
         height: '12px',
-        fontSize: 9,
-        width: '80px',
+        fontSize: 7,
         textAlign: 'center',
         cursor: 'pointer'
         

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Button } from "@material-ui/core";
 
 
 export const Header = () => {
@@ -16,7 +16,7 @@ export const Header = () => {
             </div>
             <div className="home-login-window" style={styles.logincontainer}>
                 <p className="home-title-login-div-label" style={{ marginRight: '20px' }}>Log in</p>
-                <button className="trial-btn" style={{ width: '200px', height: '30px', backgroundColor: '#2f476e', color: 'white', fontWeight: 'bold' }}>Start your free trial</button>
+                <Button className="trial-btn" style={{ height: '30px', backgroundColor: '#2f476e', color: 'white', fontWeight: 'bold' }} variant="contained">Start your free trial</Button>
             </div>
         </div>
     );
