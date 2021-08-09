@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../contexts/MovieContext";
 import { TriviaWindow } from "./TriviaWindow";
 import { Button } from "@material-ui/core";
+import './MovieViewType.css'
 
 export const MovieViewType = ({ type }) => {
 
@@ -10,16 +11,17 @@ export const MovieViewType = ({ type }) => {
 
     const [openTrivia, setOpenTrivia] = useState(false);
 
-    const imgRef = useRef()
-
-    const [visible, setVisible] = useState(false);
-
     const [movies, setMovies] = useContext(MovieContext);
 
-    const [moviefilters, ] = useState(() => {
+    const [moviefilters,] = useState(() => {
         return movies.filter(movie => movie.programType === type.toLowerCase())
     })
 
+    const arrLength = moviefilters.length;
+    const [elRefs,] = React.useState(() => {
+        let arr = []
+        return Array(arrLength).fill().map((_, i) => arr[i] || React.createRef())
+    });
 
     const getTriviaWindow = (movie) => {
         movie.topen = !openTrivia;
@@ -43,31 +45,31 @@ export const MovieViewType = ({ type }) => {
             setMovies([...movies, movie])
             return;
     }
-
+    
+    
     useEffect(() => {
-        const callback = (entries) => {
-          entries.forEach((entry) => {
-            if(!entry.isIntersecting) return
-            setVisible(entry.isIntersecting);
+        
+        const callback = (entries, observer) => {
+          entries.forEach(entry => { 
+            if(entry.isIntersecting){
+                entry.target.querySelector("img").classList.remove("inactive")
+                entry.target.querySelector(".loading").classList.add("inactive")
+                observer.unobserve(entry.target);
+            }
           });
         };
       
-        let currentRef = imgRef.current;
         const options = {
-          rootMargin: "100px",
-          threshold: 0
+          rootMargin: "0px",
+          threshold: 1.0
         };
       
         const observer = new IntersectionObserver(callback, options);
-        if(imgRef.current){
-            observer.observe(currentRef);
-        }
-        
-
-        return () => {
-            observer.unobserve(currentRef)
-        }
-      }, [imgRef,visible, moviefilters]);
+       
+        elRefs.forEach(ref => {
+            observer.observe(ref.current);
+        })
+      }, [elRefs, moviefilters]);
 
       
 
@@ -76,17 +78,23 @@ export const MovieViewType = ({ type }) => {
             <div style={styles.populartitlesdiv}>
                 <p className="popular-header" style={{ fontSize: 18, marginLeft: '17%'}}>Popular {type}</p>
             </div>
-                <div className="series-movies-container" ref={imgRef} style={styles.moviecontainer}>
-                {moviefilters.map(movie => (
-                    <div key={movie.title} style={{ marginRight: '20px' }}>
-                        {visible ?
-                        <div>
-                            <div className="movie-img" style={styles.moviediv}>
-                                <img 
+                <div className="series-movies-container" style={styles.moviecontainer}>
+                {moviefilters.map((movie, index) => (
+                    <div key={index} style={{ marginRight: '20px' }}>
+                        
+                        <div className="movie-div">
+                            <div ref={elRefs[index]} className="movie-img" style={styles.moviediv}>
+                             
+                                <img className="inactive"
                                     alt={movie.title}
                                     width={'180px'}
                                     height={'250px'}
-                                    src={movie.images["Poster Art"].url} />
+                                    src={ movie.images["Poster Art"].url } />
+                                    
+                                    <div className="loading">
+                                        <p>Loading...</p>
+                                    </div>
+                                      
                                     <TriviaWindow isOpen={movie.topen} movie={movie} />
                             </div>
                             <div className="movie-info">
@@ -97,11 +105,7 @@ export const MovieViewType = ({ type }) => {
                                 </div>
                             </div>
                         </div>
-                        :
-                        <div>
-                            <p>Loading...</p>
-                        </div>
-                        }        
+                           
                     </div>
                 ))}     
                 </div> 
