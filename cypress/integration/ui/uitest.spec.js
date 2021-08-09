@@ -75,7 +75,7 @@ describe('UI component Tests', () => {
                     cy.log("Series details are found...")
                 }
             })
-            cy.get(".movie-info").get('p').contains('Click for Trivia')
+            cy.get(".movie-info").contains('Click for Trivia')
         });
     });
 
@@ -88,7 +88,7 @@ describe('UI component Tests', () => {
         cy.log("Checking series container...")
         cy.get('.series-movies-container').should('not.be.empty').then(() => {
     
-            cy.get(".movie-info").get('p').contains('Click for Trivia');
+            cy.get(".movie-info").contains('Click for Trivia');
             cy.get(".trivia-btn").first().click().then(() => {
                 cy.wait(500);
                 cy.get(".trivia-div").should('not.be.empty');
@@ -117,7 +117,7 @@ describe('UI component Tests', () => {
                     cy.log("Movies details are found...")
                 }
             })
-            cy.get(".movie-info").get('p').contains('Click for Trivia')
+            cy.get(".movie-info").contains('Click for Trivia')
         });
     });
 
@@ -130,7 +130,7 @@ describe('UI component Tests', () => {
         cy.log("Checking movies container...")
         cy.get('.series-movies-container').should('not.be.empty').then(() => {
     
-            cy.get(".movie-info").get('p').contains('Click for Trivia');
+            cy.get(".movie-info").contains('Click for Trivia');
             cy.get(".trivia-btn").first().click().then(() => {
                 cy.wait(500);
                 cy.get(".trivia-div").should('not.be.empty');
