@@ -49,10 +49,19 @@ export const MovieViewType = ({ type }) => {
     
     useEffect(() => {
         
+        const retrieveImg = (target) => {
+            let src = target.getAttribute("data-src");
+            console.log(src)
+            if(!src){ return; }
+            target.src = src;
+        }
+
         const callback = (entries, observer) => {
           entries.forEach(entry => { 
             if(entry.isIntersecting){
-                entry.target.querySelector("img").classList.remove("inactive")
+                let target = entry.target.querySelector("img");
+                retrieveImg(target);
+                target.classList.remove("inactive");
                 entry.target.querySelector(".loading").classList.add("inactive")
                 observer.unobserve(entry.target);
             }
@@ -89,7 +98,7 @@ export const MovieViewType = ({ type }) => {
                                     alt={movie.title}
                                     width={'180px'}
                                     height={'250px'}
-                                    src={ movie.images["Poster Art"].url } />
+                                    data-src={ movie.images["Poster Art"].url } />
                                     
                                     <div className="loading">
                                         <p>Loading...</p>
